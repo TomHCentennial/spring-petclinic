@@ -17,13 +17,17 @@ pipeline {
         stage('Code Coverage') {
             steps {
                 sh './mvnw test'
-                jacoco execPattern: '**/target/*.exec'
             }
             post {
                 always {
-                    jacoco execPattern: '**/target/*.exec', classPattern: '**/classes', sourcePattern: '**/src/main/java'
+                    jacoco execPattern: '**/target/site/jacoco/jacoco.exec', classPattern: '**/target/classes', sourcePattern: '**/src/main/java', exclusionPattern: '**/target/test-classes'
                 }
             }
+        }
+    }
+    post {
+        always {
+            junit '**/target/surefire-reports/*.xml'
         }
     }
 }
