@@ -20,7 +20,7 @@ pipeline {
             }
             post {
                 always {
-                    jacoco execPattern: '**/target/site/jacoco/jacoco.exec', classPattern: '**/target/classes', sourcePattern: '**/src/main/java', exclusionPattern: '**/target/test-classes'
+                    jacoco execPattern: '**/target/*.exec', classPattern: '**/target/classes', sourcePattern: '**/src/main/java'
                 }
             }
         }
